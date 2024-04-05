@@ -8,6 +8,7 @@ import {
   Dimensions,
   ScrollView,
 } from "react-native";
+import React, { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import Note from "../components/notes";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -18,17 +19,32 @@ export default function HomeScreen() {
   const windowWidth = Dimensions.get("window").width;
   const navigation = useNavigation();
 
+  const [keys, setKeys] = useState([]);
 
+  useEffect(() => {
+    const getKeysFromAsyncStorage = async () => {
+      try {
+        const allKeys = await AsyncStorage.getAllKeys();
+        setKeys(allKeys);
+      } catch (error) {
+        console.error("Error retrieving keys from AsyncStorage:", error);
+      }
+    };
+    
+    getKeysFromAsyncStorage();
+  });
+  
+  // console.log(keys);
 
   return (
     <View style={styles.mainContainer}>
       <ScrollView>
         <View style={styles.notesContainer}>
-            <Note></Note>
-            <Note></Note>
-            <Note></Note>
-            <Note></Note>
-            <Note></Note>
+          {keys.map((key, index) => (
+            <Text key={index} name={key}>
+              {key}
+            </Text>
+          ))}
         </View>
       </ScrollView>
       <View style={styles.bottomBar}>

@@ -1,5 +1,4 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import Note from "../components/notes";
 
 export const saveKey = async (key, value) => {
   try {
@@ -33,16 +32,16 @@ export const removeKey = async (key) => {
   }
 };
 
-export async function GetAllKeys(){
-  let keys = [];
-  try {
-    keys = await AsyncStorage.getAllKeys();
-  } catch (e) {
-    console.log(e);
-  }
+// export async function GetAllKeys(){
+//   let keys = [];
+//   try {
+//     keys = await AsyncStorage.getAllKeys();
+//   } catch (e) {
+//     console.log(e);
+//   }
 
-  console.log(keys);
-  <Note name={keys}></Note>
-  // example console.log result:
-  // ['@MyApp_user', '@MyApp_key']
-};
+//   console.log(keys);
+//   <Note name={keys}></Note>
+//   // example console.log result:
+//   // ['@MyApp_user', '@MyApp_key']
+// };

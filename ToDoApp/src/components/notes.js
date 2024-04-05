@@ -1,5 +1,4 @@
 import { StyleSheet, Text, View, ScrollView, Pressable } from "react-native";
-import { saveKey, loadKey, removeKey } from "../storage/storage";
 
 export default function Note(props) {
 
